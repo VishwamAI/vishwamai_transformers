@@ -1,0 +1,37 @@
+flowchart TD
+    A[Input Sequence] --> B[Dynamic Positional Encoding]
+    
+    subgraph "Search Engine Integration"
+        SE1[Real-time Search Query Generation]
+        SE2[Multi-Source Information Retrieval]
+        SE3[Contextual Information Scoring]
+        SE4[Dynamic Knowledge Injection]
+    end
+    
+    B --> C[Encoder]
+    SE1 & SE2 & SE3 --> SE4
+    SE4 --> C
+    
+    C --> D1[Multi-Perspective Attention]
+    C --> D2[Sparse/Axial Attention]
+    C --> D3[Flexible FFN\nAdaptive Depth/Width]
+    C --> D4[Adaptive Normalization\nContext-Aware]
+    C --> D5[Residual Connection\nAttention-Gated]
+    
+    D1 & D2 & D3 & D4 & D5 --> E[Contextual Memory Layer]
+    
+    E --> F[Decoder]
+    
+    F --> G1[Multi-Perspective Attention\nDecoder Side]
+    F --> G2[Humor Layer\nContext-Integrated]
+    F --> G3[Flexible FFN\nAdaptive Depth/Width]
+    F --> G4[Adaptive Normalization\nContext-Aware]
+    F --> G5[Residual Connection\nAttention-Gated]
+    
+    G1 & G2 & G3 & G4 & G5 --> H[Dynamic Output Generation]
+    
+    H --> I1[Adaptive Beam Search]
+    H --> I2[Reinforcement Learning\nOptimization]
+    H --> I3[Search-Informed Refinement]
+    
+    I1 & I2 & I3 --> J[Output Sequence]
