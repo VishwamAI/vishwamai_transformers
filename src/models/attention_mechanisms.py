@@ -14,12 +14,12 @@ class MultiHeadAttention(nn.Module):
     @nn.compact
     def __call__(self, x, mask: Optional[jnp.ndarray] = None, training: bool = True):
         batch_size = x.shape[0]
-        self.total_dim = self.num_heads * self.head_dim
+        total_dim = self.num_heads * self.head_dim  # Compute total_dim directly
         
         # Linear projections
-        query = nn.Dense(features=self.total_dim)(x)
-        key = nn.Dense(features=self.total_dim)(x)
-        value = nn.Dense(features=self.total_dim)(x)
+        query = nn.Dense(features=total_dim)(x)
+        key = nn.Dense(features=total_dim)(x)
+        value = nn.Dense(features=total_dim)(x)
         
         # Reshape to (batch_size, num_heads, seq_len, head_dim)
         query = query.reshape(batch_size, -1, self.num_heads, self.head_dim).transpose(0, 2, 1, 3)
@@ -40,11 +40,10 @@ class MultiHeadAttention(nn.Module):
         output = jnp.matmul(attention, value)
         
         # Reshape back
-        output = output.transpose(0, 2, 1, 3).reshape(batch_size, -1, self.total_dim)
+        output = output.transpose(0, 2, 1, 3).reshape(batch_size, -1, total_dim)  # Use total_dim directly
         
         # Final linear projection
         return nn.Dense(features=x.shape[-1])(output)
-
 class RelativePositionalEncodingAttention(nn.Module):
     """
     Multi-Head Attention with Relative Positional Encodings.
