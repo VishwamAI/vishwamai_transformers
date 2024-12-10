@@ -19,13 +19,13 @@ class EncoderLayer(nn.Module):
     activation: Callable
     
     @nn.compact
-    def __call__(self, x, training=True):
+    def __call__(self, x, mask=None, training=True):
         # Self attention
         attention_output = MultiHeadAttention(
             num_heads=self.num_heads,
             head_dim=self.head_dim,
             dropout_rate=self.dropout_rate
-        )(x)
+        )(x, mask=mask)
         
         # Add & Norm
         x = nn.LayerNorm()(x + attention_output)
@@ -35,7 +35,7 @@ class EncoderLayer(nn.Module):
             num_heads=self.num_heads,
             head_dim=self.head_dim,
             dropout_rate=self.dropout_rate
-        )(x)
+        )(x, mask=mask)
         
         # Add & Norm
         x = nn.LayerNorm()(x + multi_perspective_attention_output)
@@ -45,7 +45,7 @@ class EncoderLayer(nn.Module):
             num_heads=self.num_heads,
             head_dim=self.head_dim,
             dropout_rate=self.dropout_rate
-        )(x)
+        )(x, mask=mask)
         
         # Add & Norm
         x = nn.LayerNorm()(x + sparse_axial_attention_output)
@@ -77,12 +77,12 @@ class Encoder(nn.Module):
     activation: Callable
     
     @nn.compact
-    def __call__(self, x, training=True):
+    def __call__(self, x, mask=None, training=True):
         for _ in range(self.num_layers):
             x = EncoderLayer(
                 num_heads=self.num_heads,
                 head_dim=self.head_dim,
                 dropout_rate=self.dropout_rate,
                 activation=self.activation
-            )(x, training)
+            )(x, mask=mask, training=training)
         return x

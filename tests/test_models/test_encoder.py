@@ -49,9 +49,10 @@ def test_encoder_layer_output_shape():
     key = jax.random.PRNGKey(0)
     batch_size, seq_len, embed_dim = 4, 10, 16
     x = jnp.ones((batch_size, seq_len, embed_dim))
+    mask = jnp.ones((batch_size, seq_len, seq_len))  # Example mask
     
     variables = layer.init(key, x)
-    output = layer.apply(variables, x, rngs={'dropout': key})
+    output = layer.apply(variables, x, mask=mask, rngs={'dropout': key})
     assert output.shape == (batch_size, seq_len, embed_dim)
 
 def test_encoder_output_shape():
@@ -66,9 +67,10 @@ def test_encoder_output_shape():
     key = jax.random.PRNGKey(0)
     batch_size, seq_len, embed_dim = 4, 10, 16
     x = jnp.ones((batch_size, seq_len, embed_dim))
+    mask = jnp.ones((batch_size, seq_len, seq_len))  # Example mask
     
     variables = encoder.init(key, x)
-    output = encoder.apply(variables, x, rngs={'dropout': key})
+    output = encoder.apply(variables, x, mask=mask, rngs={'dropout': key})
     assert output.shape == (batch_size, seq_len, embed_dim)
 
 def test_multi_perspective_attention_in_encoder_layer():
@@ -76,9 +78,10 @@ def test_multi_perspective_attention_in_encoder_layer():
     key = jax.random.PRNGKey(0)
     batch_size, seq_len, embed_dim = 4, 10, 16
     x = jnp.ones((batch_size, seq_len, embed_dim))
+    mask = jnp.ones((batch_size, seq_len, seq_len))  # Example mask
     
     variables = layer.init(key, x)
-    output = layer.apply(variables, x, rngs={'dropout': key})
+    output = layer.apply(variables, x, mask=mask, rngs={'dropout': key})
     assert output.shape == (batch_size, seq_len, embed_dim)
 
 def test_sparse_axial_attention_in_encoder_layer():
@@ -86,7 +89,8 @@ def test_sparse_axial_attention_in_encoder_layer():
     key = jax.random.PRNGKey(0)
     batch_size, seq_len, embed_dim = 4, 10, 16
     x = jnp.ones((batch_size, seq_len, embed_dim))
+    mask = jnp.ones((batch_size, seq_len, seq_len))  # Example mask
     
     variables = layer.init(key, x)
-    output = layer.apply(variables, x, rngs={'dropout': key})
+    output = layer.apply(variables, x, mask=mask, rngs={'dropout': key})
     assert output.shape == (batch_size, seq_len, embed_dim)

@@ -42,9 +42,9 @@ class TransformerBase(nn.Module):
             activation=self.activation
         )
 
-    def __call__(self, src, tgt, training=True):
-        encoder_output = self.encoder(src, training)
-        decoder_output = self.decoder(tgt, encoder_output, training)
+    def __call__(self, src, tgt, mask=None, training=True):
+        encoder_output = self.encoder(src, mask=mask, training=training)
+        decoder_output = self.decoder(tgt, encoder_output, mask=mask, training=training)
         return decoder_output
 
 def test_transformer_base():
@@ -73,12 +73,13 @@ def test_transformer_base():
     key = jax.random.PRNGKey(0)
     src = jax.random.randint(key, (32, 50), 0, config.src_vocab_size)
     tgt = jax.random.randint(key, (32, 50), 0, config.tgt_vocab_size)
+    mask = jax.random.randint(key, (32, 50), 0, 2).astype(bool)
     
     # Initialize model parameters
-    variables = transformer.init(key, src, tgt, training=True)
+    variables = transformer.init(key, src, tgt, mask=mask, training=True)
     
     # Forward pass
-    logits = transformer.apply(variables, src, tgt, training=False)
+    logits = transformer.apply(variables, src, tgt, mask=mask, training=False)
     
     # Check output shape
     assert logits.shape == (32, 50, config.tgt_vocab_size), "Output shape mismatch."
