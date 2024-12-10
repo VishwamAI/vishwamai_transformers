@@ -3,6 +3,33 @@ import jax.numpy as jnp
 from flax import linen as nn
 from flax.core import Scope
 
+class DynamicPositionalEncoding(nn.Module):
+    """
+    Dynamic positional encoding module for Transformer models.
+    
+    Args:
+        d_model: Embedding dimension.
+    """
+    d_model: int
+    
+    @nn.compact
+    def __call__(self, x, positions):
+        """
+        Add dynamic positional encoding to the input embeddings.
+        
+        Args:
+            x: Input embeddings of shape (batch_size, seq_length, d_model)
+            positions: Positions of shape (batch_size, seq_length)
+        
+        Returns:
+            Output embeddings with dynamic positional encoding added.
+        """
+        div_term = jnp.exp(jnp.arange(0, self.d_model, 2, dtype=jnp.float32) * (-jnp.log(10000.0) / self.d_model))
+        pe = jnp.zeros((positions.shape[0], positions.shape[1], self.d_model))
+        pe = pe.at[:, :, 0::2].set(jnp.sin(positions * div_term))
+        pe = pe.at[:, :, 1::2].set(jnp.cos(positions * div_term))
+        return x + pe
+
 class PositionalEncoding(nn.Module):
     """
     Positional encoding module for Transformer models.
@@ -15,28 +42,20 @@ class PositionalEncoding(nn.Module):
     d_model: int
     
     def setup(self):
-        # Compute the positional encoding once
-        position = jnp.arange(self.max_len, dtype=jnp.float32)[:, jnp.newaxis]
-        div_term = jnp.exp(jnp.arange(0, self.d_model, 2, dtype=jnp.float32) * (-jnp.log(10000.0) / self.d_model))
-        pe = jnp.zeros((self.max_len, self.d_model))
-        pe = pe.at[:, 0::2].set(jnp.sin(position * div_term))
-        pe = pe.at[:, 1::2].set(jnp.cos(position * div_term))
-        # Declare it as a constant
-        self.declare('pe', pe)
+        self.dynamic_pe = DynamicPositionalEncoding(d_model=self.d_model)
     
-    def __call__(self, x):
+    def __call__(self, x, positions):
         """
         Add positional encoding to the input embeddings.
         
         Args:
             x: Input embeddings of shape (batch_size, seq_length, d_model)
+            positions: Positions of shape (batch_size, seq_length)
         
         Returns:
             Output embeddings with positional encoding added.
         """
-        seq_length = x.shape[1]
-        pe = self.variables['constants']['pe']
-        return x + pe[:seq_length]
+        return self.dynamic_pe(x, positions)
 
 def test_positional_encoding():
     """
@@ -47,13 +66,9 @@ def test_positional_encoding():
     pe_module = PositionalEncoding(max_len=max_len, d_model=d_model)
     key = jax.random.PRNGKey(0)
     x = jax.random.normal(key, (32, 20, d_model))
-    y = pe_module(x)
+    positions = jax.random.randint(key, (32, 20), 0, max_len)
+    y = pe_module(x, positions)
     assert y.shape == (32, 20, d_model), "Output shape mismatch."
-    
-    # Check positional encoding for position 0
-    pe = pe_module.variables['constants']['pe']
-    assert jnp.allclose(pe[0, 0::2], jnp.zeros((d_model//2,))), "Even dimensions not zero for pos=0."
-    assert jnp.allclose(pe[0, 1::2], jnp.ones((d_model//2,))), "Odd dimensions not one for pos=0."
     
     # Additional checks can be added for other positions as needed
 

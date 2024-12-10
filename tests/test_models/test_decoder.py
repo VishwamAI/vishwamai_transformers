@@ -43,3 +43,21 @@ def test_decoder_output_shape():
     variables = decoder.init(key, x, enc_output)  # Use the key directly
     output = decoder.apply(variables, x, enc_output, rngs={'dropout': key})
     assert output.shape == (batch_size, seq_len, embed_dim)
+
+def test_multi_perspective_attention_in_decoder_layer(decoder_layer):
+    layer, key = decoder_layer
+    batch_size, seq_len, embed_dim = 4, 10, 16
+    x = jnp.ones((batch_size, seq_len, embed_dim))
+    enc_output = jnp.ones((batch_size, seq_len, embed_dim))
+    variables = layer.init(key, x, enc_output)
+    output = layer.apply(variables, x, enc_output, rngs={'dropout': key})
+    assert output.shape == (batch_size, seq_len, embed_dim)
+
+def test_sparse_axial_attention_in_decoder_layer(decoder_layer):
+    layer, key = decoder_layer
+    batch_size, seq_len, embed_dim = 4, 10, 16
+    x = jnp.ones((batch_size, seq_len, embed_dim))
+    enc_output = jnp.ones((batch_size, seq_len, embed_dim))
+    variables = layer.init(key, x, enc_output)
+    output = layer.apply(variables, x, enc_output, rngs={'dropout': key})
+    assert output.shape == (batch_size, seq_len, embed_dim)

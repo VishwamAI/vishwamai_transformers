@@ -1,7 +1,7 @@
 import jax.numpy as jnp
 from flax import linen as nn
 from typing import Callable
-from .attention_mechanisms import MultiHeadAttention
+from .attention_mechanisms import MultiHeadAttention, MultiPerspectiveAttention, SparseAxialAttention
 
 class EncoderLayer(nn.Module):
     """
@@ -29,6 +29,26 @@ class EncoderLayer(nn.Module):
         
         # Add & Norm
         x = nn.LayerNorm()(x + attention_output)
+        
+        # Multi-Perspective Attention
+        multi_perspective_attention_output = MultiPerspectiveAttention(
+            num_heads=self.num_heads,
+            head_dim=self.head_dim,
+            dropout_rate=self.dropout_rate
+        )(x)
+        
+        # Add & Norm
+        x = nn.LayerNorm()(x + multi_perspective_attention_output)
+        
+        # Sparse/Axial Attention
+        sparse_axial_attention_output = SparseAxialAttention(
+            num_heads=self.num_heads,
+            head_dim=self.head_dim,
+            dropout_rate=self.dropout_rate
+        )(x)
+        
+        # Add & Norm
+        x = nn.LayerNorm()(x + sparse_axial_attention_output)
         
         # Feed Forward
         y = nn.Dense(features=4 * x.shape[-1])(x)
