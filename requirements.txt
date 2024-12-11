@@ -1,6 +1,23 @@
-# Core ML Libraries
 jax
 jaxlib
 flax
 numpy
 optax
+pandas
+requests
+beautifulsoup4
+selenium
+pytest
+matplotlib
+scipy
+transformers
+datasets
+spacy
+scikit-learn
+tqdm
+cloudpickle
+gcsfs
+boto3
+sqlalchemy
+openai
+nltk
