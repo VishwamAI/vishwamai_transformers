@@ -2,12 +2,10 @@ jax
 jaxlib
 flax
 pytest
-numpy
+numpy<2.0
 optax
 spacy
 yake
 transformers
-sklearn
-bs4
-wikipedia
-hashlib
+scikit-learn
+beautifulsoup4
