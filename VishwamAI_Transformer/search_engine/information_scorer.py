@@ -2,6 +2,8 @@ import jax
 import jax.numpy as jnp
 from flax import linen as nn
 from typing import Any, Callable, Optional
+from VishwamAI_Transformer.models.positional_encoding import PositionalEncoding
+from VishwamAI_Transformer.models.transformer_base import TransformerBase
 
 class ContextualInformationScorer(nn.Module):
     """
