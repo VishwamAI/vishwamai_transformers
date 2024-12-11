@@ -4,19 +4,3 @@ jaxlib
 flax
 numpy
 optax
-
-# Deep Learning & NLP
-torch
-spacy==3.8.2
-yake==0.4.8
-pydantic
-
-# Scientific Computing
-scikit-learn==1.3.2
-scipy==1.9.3
-
-# Text Processing
-beautifulsoup4==4.12.3
-
-# Testing
-pytest
