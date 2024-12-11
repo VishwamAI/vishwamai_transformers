@@ -1,5 +1,6 @@
-jax==0.4.17
-jaxlib==0.4.17
-flax==0.7.2
-pytest==7.4.0
-numpy<2
+jax
+jaxlib
+flax
+pytest
+numpy
+optax
