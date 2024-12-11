@@ -1,4 +1,4 @@
-# Core ML libraries
+# Core ML Libraries
 jax
 jaxlib
 flax
@@ -9,6 +9,7 @@ optax
 torch
 spacy==3.8.2
 yake==0.4.8
+pydantic
 
 # Scientific Computing
 scikit-learn==1.3.2
