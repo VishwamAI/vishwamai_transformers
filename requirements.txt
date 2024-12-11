@@ -1,24 +1,33 @@
+# Core ML & Deep Learning
 jax
 jaxlib
 flax
 numpy
 optax
-pandas
-requests
-beautifulsoup4
-selenium
-pytest
-matplotlib
-scipy
+torch
 transformers
-datasets
+
+# NLP & Text Processing
 spacy
+yake
+nltk
+beautifulsoup4
+
+# Scientific Computing
+scipy
 scikit-learn
-tqdm
-cloudpickle
+pandas
+
+# Data Storage & APIs
+sqlalchemy
+requests
 gcsfs
 boto3
-sqlalchemy
-openai
-nltk
-yake
+
+# Testing & Development
+pytest
+selenium
+tqdm
+matplotlib
+datasets
+cloudpickle
