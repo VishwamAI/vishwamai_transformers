@@ -7,7 +7,6 @@ optax
 
 # Deep Learning & NLP
 torch
-transformers
 spacy==3.8.2
 yake==0.4.8
 
