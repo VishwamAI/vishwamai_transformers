@@ -2,12 +2,13 @@
 jax
 jaxlib
 flax
-numpy<2
+numpy>=1.24.0,<2.0.0
 optax
 
 # Deep Learning & NLP
-torch
-transformers
+torch==2.1.0
+transformers==4.35.2
+tokenizers==0.14.1
 spacy==3.8.2
 yake==0.4.8
 
@@ -16,7 +17,7 @@ scikit-learn==1.3.2
 scipy==1.9.3
 
 # Text Processing
-beautifulsoup4
+beautifulsoup4==4.12.3
 
 # Testing
 pytest
