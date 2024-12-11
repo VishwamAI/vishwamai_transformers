@@ -2,12 +2,12 @@
 jax
 jaxlib
 flax
-numpy>=1.24.0,<2.0.0
+numpy
 optax
 
 # Deep Learning & NLP
-torch==2.1.0
-transformers==4.35.2
+torch
+transformers
 tokenizers==0.14.1
 spacy==3.8.2
 yake==0.4.8
