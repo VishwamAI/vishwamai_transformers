@@ -1,11 +1,22 @@
+# Core ML libraries
 jax
 jaxlib
 flax
-pytest
-numpy<2.0
+numpy<2
 optax
-spacy
-yake
+
+# Deep Learning & NLP
+torch
 transformers
-scikit-learn
+spacy==3.8.2
+yake==0.4.8
+
+# Scientific Computing
+scikit-learn==1.3.2
+scipy==1.9.3
+
+# Text Processing
 beautifulsoup4
+
+# Testing
+pytest
