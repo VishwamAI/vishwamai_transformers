@@ -4,3 +4,10 @@ flax
 pytest
 numpy
 optax
+spacy
+yake
+transformers
+sklearn
+bs4
+wikipedia
+hashlib
