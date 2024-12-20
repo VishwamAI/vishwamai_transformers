@@ -42,6 +42,7 @@ flowchart TD
         AG3[Agent 3 - Humor Detection]
         AG4[Agent 4 - Dynamic Knowledge Integration]
         AG5[Agent 5 - Output Optimization]
+        AG6[Agent 6 - CoT Reasoning]
         
         AG0[Coordinator Agent]
     end
@@ -51,23 +52,30 @@ flowchart TD
     A --> AG3
     A --> AG4
     A --> AG5
+    A --> AG6
     
     AG1 --> C
     AG2 --> C
     AG3 --> G2
     AG4 --> SE1
     AG5 --> I1
+    AG6 --> C
+    AG6 --> F
+    AG6 --> H
     
     AG0 --> AG1
     AG0 --> AG2
     AG0 --> AG3
     AG0 --> AG4
     AG0 --> AG5
+    AG0 --> AG6
     
     AG1 --> AG0
     AG2 --> AG0
     AG3 --> AG0
     AG4 --> AG0
     AG5 --> AG0
+    AG6 --> AG0
     
     AG0 --> J
+    I2 --> AG6
