@@ -35,3 +35,39 @@ flowchart TD
     H --> I3[Search-Informed Refinement]
     
     I1 & I2 & I3 --> J[Output Sequence]
+    
+    subgraph "Multi-Agent System"
+        AG1[Agent 1 - Contextual Understanding]
+        AG2[Agent 2 - Semantic Analysis]
+        AG3[Agent 3 - Humor Detection]
+        AG4[Agent 4 - Dynamic Knowledge Integration]
+        AG5[Agent 5 - Output Optimization]
+        
+        AG0[Coordinator Agent]
+    end
+    
+    A --> AG1
+    A --> AG2
+    A --> AG3
+    A --> AG4
+    A --> AG5
+    
+    AG1 --> C
+    AG2 --> C
+    AG3 --> G2
+    AG4 --> SE1
+    AG5 --> I1
+    
+    AG0 --> AG1
+    AG0 --> AG2
+    AG0 --> AG3
+    AG0 --> AG4
+    AG0 --> AG5
+    
+    AG1 --> AG0
+    AG2 --> AG0
+    AG3 --> AG0
+    AG4 --> AG0
+    AG5 --> AG0
+    
+    AG0 --> J

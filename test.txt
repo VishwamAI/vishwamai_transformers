@@ -1,0 +1,26 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-8.3.4, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/kasinadhsarma/experiment/vishwamai_transformers
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.7.0
+collecting ... collected 15 items
+
+tests/test_models/test_attention_mechanisms.py::test_multi_head_attention_output_shape PASSED [  6%]
+tests/test_models/test_decoder.py::test_decoder_layer_output_shape PASSED [ 13%]
+tests/test_models/test_decoder.py::test_decoder_output_shape PASSED      [ 20%]
+tests/test_models/test_encoder.py::test_encoder_layer_output_shape PASSED [ 26%]
+tests/test_models/test_encoder.py::test_encoder_output_shape PASSED      [ 33%]
+tests/test_search_engine/test_information_scorer.py::test_score PASSED   [ 40%]
+tests/test_search_engine/test_information_scorer.py::test_empty_retrieved_data PASSED [ 46%]
+tests/test_search_engine/test_information_scorer.py::test_preprocess_text PASSED [ 53%]
+tests/test_search_engine/test_knowledge_injector.py::test_inject_knowledge PASSED [ 60%]
+tests/test_search_engine/test_knowledge_injector.py::test_no_retrieved_data PASSED [ 66%]
+tests/test_search_engine/test_knowledge_injector.py::test_max_seq_length PASSED [ 73%]
+tests/test_search_engine/test_query_generator.py::test_generate_query PASSED [ 80%]
+tests/test_search_engine/test_query_generator.py::test_empty_input PASSED [ 86%]
+tests/test_search_engine/test_query_generator.py::test_invalid_input PASSED [ 93%]
+tests/test_search_engine/test_query_generator.py::test_unique_queries PASSED [100%]
+
+============================= 15 passed in 18.97s ==============================

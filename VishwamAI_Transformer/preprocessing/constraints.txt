@@ -1,0 +1,14 @@
+# test_requirements.txt
+
+# Core dependencies from requirements.txt
+jax
+jaxlib
+flax
+numpy
+optax
+pandas
+requests
+beautifulsoup4
+selenium
+pytest
+matplotlib
