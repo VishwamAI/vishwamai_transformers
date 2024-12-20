@@ -1,81 +1,165 @@
 flowchart TD
-    A[Input Sequence] --> B[Dynamic Positional Encoding]
-    
-    subgraph "Search Engine Integration"
-        SE1[Real-time Search Query Generation]
-        SE2[Multi-Source Information Retrieval]
-        SE3[Contextual Information Scoring]
-        SE4[Dynamic Knowledge Injection]
-    end
-    
-    B --> C[Encoder]
-    SE1 & SE2 & SE3 --> SE4
-    SE4 --> C
-    
-    C --> D1[Multi-Perspective Attention]
-    C --> D2[Sparse/Axial Attention]
-    C --> D3[Flexible FFN\nAdaptive Depth/Width]
-    C --> D4[Adaptive Normalization\nContext-Aware]
-    C --> D5[Residual Connection\nAttention-Gated]
-    
-    D1 & D2 & D3 & D4 & D5 --> E[Contextual Memory Layer]
-    
-    E --> F[Decoder]
-    
-    F --> G1[Multi-Perspective Attention\nDecoder Side]
-    F --> G2[Humor Layer\nContext-Integrated]
-    F --> G3[Flexible FFN\nAdaptive Depth/Width]
-    F --> G4[Adaptive Normalization\nContext-Aware]
-    F --> G5[Residual Connection\nAttention-Gated]
-    
-    G1 & G2 & G3 & G4 & G5 --> H[Dynamic Output Generation]
-    
-    H --> I1[Adaptive Beam Search]
-    H --> I2[Reinforcement Learning\nOptimization]
-    H --> I3[Search-Informed Refinement]
-    
-    I1 & I2 & I3 --> J[Output Sequence]
-    
-    subgraph "Multi-Agent System"
-        AG1[Agent 1 - Contextual Understanding]
-        AG2[Agent 2 - Semantic Analysis]
-        AG3[Agent 3 - Humor Detection]
-        AG4[Agent 4 - Dynamic Knowledge Integration]
-        AG5[Agent 5 - Output Optimization]
-        AG6[Agent 6 - CoT Reasoning]
-        
-        AG0[Coordinator Agent]
-    end
-    
-    A --> AG1
-    A --> AG2
-    A --> AG3
-    A --> AG4
-    A --> AG5
-    A --> AG6
-    
-    AG1 --> C
-    AG2 --> C
-    AG3 --> G2
-    AG4 --> SE1
-    AG5 --> I1
-    AG6 --> C
-    AG6 --> F
-    AG6 --> H
-    
-    AG0 --> AG1
-    AG0 --> AG2
-    AG0 --> AG3
-    AG0 --> AG4
-    AG0 --> AG5
-    AG0 --> AG6
-    
-    AG1 --> AG0
-    AG2 --> AG0
-    AG3 --> AG0
-    AG4 --> AG0
-    AG5 --> AG0
-    AG6 --> AG0
-    
-    AG0 --> J
-    I2 --> AG6
+
+    %% Enhanced Cognitive Input Processing
+
+    A[Input Sequence] --> B[Neural-Cognitive Encoder]
+
+    
+
+    %% Advanced Cognitive Integration
+
+    subgraph "Cognitive Processing Engine"
+
+        CP1[Multimodal Pattern Recognition]
+
+        CP2[Abstract Reasoning Module]
+
+        CP3[Ethical Framework Processor]
+
+        CP4[Cognitive State Tracker]
+
+        CP5[Safety Boundary Controller]
+
+    end
+
+    
+
+    %% Knowledge Integration
+
+    subgraph "Knowledge Integration System"
+
+        K1[Hierarchical Knowledge Base]
+
+        K2[Causal Reasoning Engine]
+
+        K3[Uncertainty Quantification]
+
+        K4[Value Alignment Module]
+
+    end
+
+    
+
+    %% Main Processing Path
+
+    B --> C[Meta-Learning Encoder]
+
+    CP1 & CP2 & CP3 & CP4 & CP5 --> C
+
+    K1 & K2 & K3 & K4 --> C
+
+    
+
+    %% Advanced Neural Components
+
+    C --> D1[Self-Reflective Attention]
+
+    C --> D2[Ethical Constraint Layer]
+
+    C --> D3[Adaptive Reasoning Network]
+
+    C --> D4[Stability Control Unit]
+
+    C --> D5[Safety-Gated Memory]
+
+    
+
+    %% Enhanced Memory System
+
+    D1 & D2 & D3 & D4 & D5 --> E[Neural-Cognitive Memory Bank]
+
+    
+
+    %% Cognitive Processing Path
+
+    E --> F[Cognitive Integration Decoder]
+
+    
+
+    %% Advanced Generation Components
+
+    F --> G1[Value-Aligned Attention]
+
+    F --> G2[Ethical Response Generator]
+
+    F --> G3[Bounded Reasoning Unit]
+
+    F --> G4[Uncertainty-Aware Output]
+
+    F --> G5[Safety Check Gateway]
+
+    
+
+    %% Safety-Aware Output Processing
+
+    G1 & G2 & G3 & G4 & G5 --> H[Safe Output Orchestrator]
+
+    
+
+    %% Controlled Generation
+
+    H --> I1[Safety-Bounded Search]
+
+    H --> I2[Value-Aligned Learning]
+
+    H --> I3[Ethical Output Refinement]
+
+    
+
+    %% Final Output
+
+    I1 & I2 & I3 --> J[Safety-Verified Output]
+
+    
+
+    %% Cognitive Monitoring System
+
+    subgraph "Safety and Ethics Framework"
+
+        S1[Safety Monitor]
+
+        S2[Ethics Validator]
+
+        S3[Uncertainty Assessor]
+
+        S4[Value Alignment Check]
+
+        S5[Boundary Enforcer]
+
+        S0[Master Safety Controller]
+
+    end
+
+    
+
+    %% Safety System Integration
+
+    A --> S1 & S2 & S3 & S4 & S5
+
+    
+
+    %% Control Points
+
+    S1 & S2 --> C
+
+    S3 --> G2
+
+    S4 --> I1
+
+    S5 --> H
+
+    
+
+    %% Safety Coordination
+
+    S0 --> S1 & S2 & S3 & S4 & S5
+
+    S1 & S2 & S3 & S4 & S5 --> S0
+
+    
+
+    %% Safety Verification Loop
+
+    S0 --> J
+
+    I2 --> S5
